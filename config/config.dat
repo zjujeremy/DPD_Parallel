@@ -1,0 +1,52 @@
+runId
+1
+shearRate
+ 0.0
+alphaf alphafp alphapp alphaFD alphaDD alphaB
+-40.00 -40.00  -40.00  -25.00  -40.00   25.00
+alphaw alphaw_top alphawB
+-30.00   -45.00    26.20
+rcut rcut_d
+ 1.0  0.75
+gammaF gammaD gammaFD
+1.0     1.0    1.0
+gammaw
+ 1.0 
+lambda
+ 0.65
+density
+ 6.0
+temperature mass
+ 1.0        1.0
+gravity
+  0 0 0
+WLadjust
+ 1.0
+FENE Parameters
+ 2.0  3.0  0.
+deltaT
+ 0.01
+stepAvg
+ 200
+stepEquil
+ 2000
+startSample
+ 0
+stepSample
+ 5000
+stepLimit
+1000000
+sizeHistGrid
+ 40  40  20
+stepGrid
+ 1
+limitGrid
+ 5000
+stepChainProps
+ 1
+LimitChainProps
+ 100
+nChainConf
+ 0
+timeSteady
+ 0.
