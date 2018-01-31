@@ -1,6 +1,5 @@
 #include <iostream>
 #include <omp.h>
-#include <stdlib.h>
 #include "DPD_System.h"
 
 using namespace std;
