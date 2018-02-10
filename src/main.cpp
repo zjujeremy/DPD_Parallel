@@ -13,6 +13,8 @@ int main(){
 		dpdFlow.setParams();
 		dpdFlow.setupJob();
 		while (dpdFlow.checkCycle()){
+			if (dpdFlow.getstepCount() % 500 == 0)
+				dpdFlow.outputParticleSituation();
 			dpdFlow.SingleStep();
 		}
 	}

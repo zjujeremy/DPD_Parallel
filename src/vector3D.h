@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
 template <class numtype>
@@ -98,6 +99,8 @@ class vector3D{
 		inline friend ostream& operator << (ostream&, const vector3D<numtype> &);
 		template <class numtype>
 		inline friend ifstream& operator >> (ifstream&, vector3D<numtype> &);
+		template <class numtype>
+		inline friend ofstream& operator << (ofstream&, vector3D<numtype> &);
 	private:
 		numtype x, y, z;
 };
@@ -112,6 +115,13 @@ template <class numtype>
 ifstream& operator >> (ifstream & input, vector3D<numtype> & _v){
 	input >> _v.x >> _v.y >> _v.z;
 	return input;
+}
+
+template <class numtype>
+ofstream& operator << (ofstream& output, vector3D<numtype> & _v){
+	//output.width(15);
+	output << setw(15) << _v.x << setw(15) << _v.y << setw(15) << _v.z;
+	return output;
 }
 
 template <class numtype>

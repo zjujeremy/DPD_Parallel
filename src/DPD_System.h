@@ -70,8 +70,10 @@ class DPD_System{
 		void setupJob();  
 
 		void SingleStep(); // single step in DPD system
+		void outputParticleSituation(); 
 
 		inline int checkCycle();   // check the cycle 
+		inline unsigned int getstepCount();
 	private:
 		//compute forces paraments
 		int maxLists;
@@ -111,6 +113,10 @@ inline int DPD_System::checkCycle(){
 	if (stepCount == stepLimit)
 		moreCycle = 0;
 	return moreCycle;
+}
+
+inline unsigned int DPD_System::getstepCount(){
+	return stepCount;
 }
 
 template<typename T>

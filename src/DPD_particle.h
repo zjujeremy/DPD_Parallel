@@ -11,6 +11,7 @@ class DPD_particle{
 		DPD_particle(){}
 		DPD_particle(vector3D<double> _p, vector3D<double> _v, vector3D<double> _a) :position(_p), velocity(_v), acceleration(_a){ }
 		//DPD_particle(const DPD_particle & _particle);
+		/*inline void outSituation();*/
 
 		inline void setPosition(const vector3D<double> &_r);
 		inline void setVelocity(const vector3D<double> & _v);
@@ -37,6 +38,10 @@ class DPD_particle{
 		vector3D<double> position, velocity, acceleration;
 		vector3D<int> ncc;
 };
+
+//inline void DPD_particle::outSituation(){
+//
+//}
 
 inline void DPD_particle::setPosition(const vector3D<double> & _r){
 	position = _r;

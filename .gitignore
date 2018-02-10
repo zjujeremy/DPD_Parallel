@@ -3,3 +3,4 @@ Debug
 *.vcxproj
 *.filters
 Release
+data/instantSituation/Situation_Step_1.plt

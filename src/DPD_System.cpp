@@ -194,8 +194,9 @@ void DPD_System::setupJob(){
 
 void DPD_System::SingleStep(){
 
-	stepCount += 1;
-	cout << "stepCount = " << stepCount << endl;
+	stepCount++;
+	if (stepCount % 100 == 0)
+		cout << "stepCount = " << stepCount << endl;
 	if (stepCount > stepEquil)
 		timeNow += deltaT;
 
@@ -779,4 +780,50 @@ void DPD_System::updataAccelAndVelosub(vector<T> & _v){
 			_vp.setVelocity(vr + (abs(vn) - vn)*wp.getwn());
 		}
 	}
+}
+
+void DPD_System::outputParticleSituation() {
+	char filename[60];
+	sprintf_s(filename, "./data/instantSituation/Situation_Step_%d.plt", stepCount);
+	ofstream outFile(filename, ios::out);
+	if (!outFile){
+		cout << "open outfile error" << endl;
+		throw 1;
+	}
+	outFile << "TITLE = \"All Particles Coordinates\"" << endl;
+	outFile << "Variables= \"X\",\"Y\",\"Z\",\"Vx\",\"Vy\",\"Vz\",\"ax\",\"ay\",\"az\"" << endl;
+
+	if (vectorWallPtc.size() > 0 && runID != 0 && runID != 6){
+		outFile << "ZONE" << endl;
+		outFile << "T=\"WallPariticles\"" << endl;
+		outFile << "I = " << vectorWallPtc.size() << ", F = POINT" << endl;
+		for (auto & _p : vectorWallPtc){
+			outFile << _p.getPosition() << _p.getVelocity() << _p.getAcceleration() << endl;
+		}
+	}
+	if (vectorDropPtc.size() > 0){
+		outFile << "ZONE" << endl;
+		outFile << "T=\"DropPariticles\"" << endl;
+		outFile << "I = " << vectorDropPtc.size() << ", F = POINT" << endl;
+		for (auto & _p : vectorDropPtc){
+			outFile << _p.getPosition() << _p.getVelocity() << _p.getAcceleration() << endl;
+		}
+	}
+	if (vectorChainPtc.size() > 0){
+		outFile << "ZONE" << endl;
+		outFile << "T=\"ChainPariticles\"" << endl;
+		outFile << "I = " << vectorChainPtc.size() << ", F = POINT" << endl;
+		for (auto & _p : vectorChainPtc){
+			outFile << _p.getPosition() << _p.getVelocity() << _p.getAcceleration() << endl;
+		}
+	}
+	if (vectorFluidPtc.size() > 0){
+		outFile << "ZONE" << endl;
+		outFile << "T=\"FluidPariticles\"" << endl;
+		outFile << "I = " << vectorFluidPtc.size() << ", F = POINT" << endl;
+		for (auto & _p : vectorFluidPtc){
+			outFile << _p.getPosition() << _p.getVelocity() << _p.getAcceleration() << endl;
+		}
+	}
+	outFile.close();
 }
